@@ -31,11 +31,10 @@
           myconfig = { graphical = true; };
         };
         inherit pkgs;
-        useGlobalPkgs = true;
 
         # Specify your home configuration modules here, for example,
         # the path to your home.nix.
-        modules = [
+        modules = builtins.trace pkgs.formats.xml [
           # hyprland
           # waybar
           inputs.stylix.homeManagerModules.stylix

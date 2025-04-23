@@ -9,11 +9,11 @@
       # sqlite3 .mozilla/firefox/<profile>/places.sqlite
       # delete from moz_places;
       search = {
-        default = "DuckDuckGo";
-        privateDefault = "DuckDuckGo";
+        default = "ddg";
+        privateDefault = "ddg";
         force = true;
       };
-      extensions = with inputs.firefox-addons.packages.${pkgs.system}; [
+      extensions.packages = with inputs.firefox-addons.packages.${pkgs.system}; [
         ublock-origin
         bitwarden
         container-tabs-sidebar # add this to extension style: .container .container-tab { padding-left: 20px; }
