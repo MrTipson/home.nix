@@ -30,6 +30,7 @@
   home.username = "tipson";
   home.homeDirectory = "/home/tipson";
 
+  nixpkgs.config.allowUnfree = true;
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
@@ -85,7 +86,7 @@
         "$mod, Print, exec, hyprshot -m window --clipboard-only"
         "$mod, s, exec, uwsm app -T -- superfile"
         "$mod, h, exec, uwsm app -T -- zenith"
-        "$mod, v, exec, bash -c \"wl-paste > $(${../../modules/home-manager/graphical/tofi-recursive-file.sh} --prompt-text='save clipboard to: ')\""
+        "$mod, v, exec, bash -c \"wl-paste > $(${./modules/graphical/tofi-recursive-file.sh} --prompt-text='save clipboard to: ')\""
       ] ++ (
         # workspaces
         # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}

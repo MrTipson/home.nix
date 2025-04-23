@@ -1,5 +1,6 @@
-{ pkgs, config, ... }:
+{ pkgs, config, inputs, ... }:
 {
+  stylix.targets.firefox.profileNames = [ "default" ];
   programs.firefox = {
     enable = true;
     package = pkgs.firefox-bin;
@@ -12,7 +13,7 @@
         privateDefault = "DuckDuckGo";
         force = true;
       };
-      extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+      extensions = with inputs.firefox-addons.packages.${pkgs.system}; [
         ublock-origin
         bitwarden
         container-tabs-sidebar # add this to extension style: .container .container-tab { padding-left: 20px; }

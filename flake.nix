@@ -9,33 +9,35 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nur = {
-      url = "github:nix-community/NUR";
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
+
     stylix = {
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { nixpkgs, home-manager, ... }:
+  outputs = { nixpkgs, home-manager, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
     in {
       homeConfigurations."tipson" = home-manager.lib.homeManagerConfiguration {
-        extraSpecialArgs = { inherit inputs; 
-          myconfig = { graphical = true; }
+        extraSpecialArgs = {
+          inherit inputs; 
+          myconfig = { graphical = true; };
         };
         inherit pkgs;
+        useGlobalPkgs = true;
 
         # Specify your home configuration modules here, for example,
         # the path to your home.nix.
         modules = [
-          hyprland
-          waybar
+          # hyprland
+          # waybar
           inputs.stylix.homeManagerModules.stylix
           ./home.nix
         ];
