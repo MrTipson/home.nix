@@ -27,7 +27,8 @@
           pkgs = nixpkgs.legacyPackages.${system};
           extraSpecialArgs = { inherit inputs myconfig; };
           modules = [ ./home.nix ] ++ modules;
-        };  
+        };
+      forAllSystems = with nixpkgs; (lib.genAttrs lib.systems.flakeExposed);
     in 
       {
         homeConfigurations = {
@@ -42,5 +43,6 @@
             };
         };
         homeManagerModules = import ./modules;
+        legacyPackages = forAllSystems (system: import ./packages (nixpkgs.legacyPackages.${system}));
       };
 }

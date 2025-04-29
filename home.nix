@@ -1,5 +1,6 @@
-{ config, pkgs, lib, myconfig, ... }:
-
+{ config, pkgs, lib, myconfig, ... }: let
+  mypkgs = import ./packages pkgs;
+in
 {
   imports = with import ./modules; [
     terminal.fish
@@ -75,7 +76,7 @@
         "$mod, F, exec, uwsm app -- kitty"
         "Control Alt, Delete, exec, uwsm stop --"
         "$mod, R, exec, uwsm app -- $(tofi-drun)"
-        "$mod, T, exec, tofi-run --require-match=false --prompt-text='execute command: ' | xargs -r uwsm app -- kitty --hold"
+        "$mod, T, exec, ${mypkgs.tofi-nix-run}/bin/tofi-nix-run"
         "$mod, C, killactive,"
         "$mod, left, movefocus, l"
         "$mod, right, movefocus, r"
@@ -86,7 +87,7 @@
         "$mod, Print, exec, hyprshot -m window --clipboard-only"
         "$mod, s, exec, uwsm app -T -- superfile"
         "$mod, h, exec, uwsm app -T -- zenith"
-        "$mod, v, exec, bash -c \"wl-paste > $(${./modules/graphical/tofi-recursive-file.sh} --prompt-text='save clipboard to: ')\""
+        "$mod, v, exec, bash -c \"wl-paste > $(${mypkgs.tofi-recursive-file}/bin/tofi-recursive-file --prompt-text='save clipboard to: ')\""
       ] ++ (
         # workspaces
         # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
