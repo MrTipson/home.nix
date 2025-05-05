@@ -5,6 +5,7 @@ in
   imports = with import ./modules; [
     terminal.fish
     terminal.superfile
+    terminal.television
 
     ssh.github
     ssh.minipc
@@ -38,6 +39,7 @@ in
     nixd
     nixfmt-rfc-style
     zenith-nvidia # hardware monitor
+    tldr
   ] ++ lib.optionals myconfig.graphical [
     wl-clipboard
     hyprshot # screenshot tool

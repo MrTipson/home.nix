@@ -18,6 +18,11 @@
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-search-tv = {
+      url = "github:3timeslazy/nix-search-tv";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {nixpkgs, home-manager, ...}@inputs:
@@ -25,7 +30,7 @@
       mkHomeConfiguration = system: { myconfig, modules ? [] }: home-manager.lib.homeManagerConfiguration
         {
           pkgs = nixpkgs.legacyPackages.${system};
-          extraSpecialArgs = { inherit inputs myconfig; };
+          extraSpecialArgs = { inherit inputs myconfig system; };
           modules = [ ./home.nix ] ++ modules;
         };
       forAllSystems = with nixpkgs; (lib.genAttrs lib.systems.flakeExposed);
