@@ -4,7 +4,6 @@ in
 {
   imports = with import ./modules; [
     terminal.fish
-    terminal.superfile
     terminal.television
 
     ssh.github
@@ -21,6 +20,7 @@ in
     obs-studio
     pipewire
     soteria
+    stylix-qt
     stylix
     swaync
     tofi
@@ -44,7 +44,7 @@ in
     wl-clipboard
     hyprshot # screenshot tool
     mangohud # hardware overlay
-    anytype
+    spotify
     ffmpeg
     xdg-utils
   ];
@@ -85,9 +85,10 @@ in
         "$mod, up, movefocus, u"
         "$mod, down, movefocus, d"
         "$mod, z, fullscreen,"
+        "$mod, u, togglefloating,"
         ", Print, exec, hyprshot -m region --clipboard-only"
         "$mod, Print, exec, hyprshot -m window --clipboard-only"
-        "$mod, s, exec, uwsm app -T -- superfile"
+        "$mod, s, exec, uwsm app -- dolphin"
         "$mod, h, exec, uwsm app -T -- zenith"
         "$mod, v, exec, bash -c \"wl-paste > $(${mypkgs.tofi-recursive-file}/bin/tofi-recursive-file --prompt-text='save clipboard to: ')\""
       ] ++ (

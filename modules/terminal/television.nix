@@ -10,4 +10,9 @@
     source_command = "nix-search-tv print"
     preview_command = "nix-search-tv preview {}"
   '';
+  xdg.configFile."nix-search-tv/config.json".text = ''
+  {
+    "indexes": ["nixpkgs", "home-manager", "nur", "nixos" ]
+  }
+  '';
 }

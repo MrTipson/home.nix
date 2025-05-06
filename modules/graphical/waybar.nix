@@ -4,7 +4,6 @@
   programs.waybar = {
     enable = true;
     systemd.enable = true;
-    # doesnt merge with /hosts/masina/home-manager/waybar.nix
     settings.mainbar = {
       layer = "top";
       modules-left = ["hyprland/workspaces" "tray"];
