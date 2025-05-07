@@ -1,5 +1,6 @@
 { pkgs, config, ... }:
 {
+  home.packages = [ pkgs.uwsm ];
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.enable = false;
