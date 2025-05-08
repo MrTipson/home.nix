@@ -85,6 +85,8 @@ in
         "$mod, up, movefocus, u"
         "$mod, down, movefocus, d"
         "$mod, z, fullscreen,"
+        "$mod, a, splitratio, -0.1"
+        "$mod, d, splitratio, +0.1"
         "$mod, u, togglefloating,"
         ", Print, exec, hyprshot -m region --clipboard-only"
         "$mod, Print, exec, hyprshot -m window --clipboard-only"
@@ -111,6 +113,9 @@ in
     extraConfig = ''
       input {
         kb_layout = si
+      }
+      dwindle {
+        split_width_multiplier = 1.5
       }
     '';
   };
