@@ -20,6 +20,7 @@ in
     obs-studio
     pipewire
     soteria
+    spotify
     stylix-qt
     stylix
     swaync
@@ -44,7 +45,6 @@ in
     wl-clipboard
     hyprshot # screenshot tool
     mangohud # hardware overlay
-    spotify
     ffmpeg
     xdg-utils
   ];

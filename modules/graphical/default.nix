@@ -9,6 +9,7 @@
   obs-studio = import ./obs-studio.nix;
   pipewire = import ./pipewire.nix;
   soteria = import ./soteria.nix;
+  spotify = import ./spotify.nix;
   stylix-qt = import ./stylix-qt.nix;
   stylix = import ./stylix.nix;
   swaync = import ./swaync.nix;

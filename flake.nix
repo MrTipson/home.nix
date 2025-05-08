@@ -23,6 +23,11 @@
       url = "github:3timeslazy/nix-search-tv";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {nixpkgs, home-manager, ...}@inputs:
