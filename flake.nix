@@ -35,7 +35,7 @@
       mkHomeConfiguration = system: { myconfig, modules ? [] }: home-manager.lib.homeManagerConfiguration
         {
           pkgs = nixpkgs.legacyPackages.${system};
-          extraSpecialArgs = { inherit inputs myconfig system; };
+          extraSpecialArgs = { inherit inputs myconfig; };
           modules = [ ./home.nix ] ++ modules;
         };
       forAllSystems = with nixpkgs; (lib.genAttrs lib.systems.flakeExposed);

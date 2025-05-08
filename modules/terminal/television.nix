@@ -1,8 +1,8 @@
-{ inputs, system, pkgs, ... }:
+{ inputs, pkgs, ... }:
 {
   home.packages = with pkgs; [
     television
-    inputs.nix-search-tv.packages.${system}.default
+    inputs.nix-search-tv.packages.${pkgs.system}.default
   ];
   xdg.configFile."television/nix_channels.toml".text = ''
     [[cable_channel]]
