@@ -18,6 +18,12 @@
         ublock-origin
         bitwarden
       ];
+      # browser toolbox - enable in devtools settings
+      userChrome = ''
+        #unified-extensions-button { display: none; }
+        moz-button[view="viewCustomizeSidebar"] { display: none !important; }
+        #sidebar-main { padding-bottom: 5px; }
+      '';
     };
   };
 }
