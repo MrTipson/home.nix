@@ -1,5 +1,8 @@
 { config, pkgs, lib, myconfig, ... }: let
   mypkgs = import ./packages pkgs;
+  desktops = {
+    Hyprland = "uwsm start $(which Hyprland)";
+  };
 in
 {
   imports = with import ./modules; [
@@ -119,6 +122,9 @@ in
       }
     '';
   };
+
+
+  programs.fish.loginShellInit = ''${mypkgs.user-desktop-select.override { inherit desktops; }}'';
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
