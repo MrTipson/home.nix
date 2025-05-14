@@ -2,8 +2,6 @@
   description = "Home Manager configuration of tipson";
 
   inputs = {
-    nixpkgs.url = "flake:nixpkgs";
-
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -28,6 +26,11 @@
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    tipson-pkgs = {
+      url = "path:./packages";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {nixpkgs, home-manager, ...}@inputs:
@@ -38,7 +41,6 @@
           extraSpecialArgs = { inherit inputs myconfig; };
           modules = [ ./home.nix ] ++ modules;
         };
-      forAllSystems = with nixpkgs; (lib.genAttrs lib.systems.flakeExposed);
     in 
       {
         homeConfigurations = {
@@ -53,6 +55,5 @@
             };
         };
         homeManagerModules = import ./modules;
-        legacyPackages = forAllSystems (system: import ./packages (nixpkgs.legacyPackages.${system}));
       };
 }

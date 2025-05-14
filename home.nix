@@ -1,10 +1,6 @@
-{ config, pkgs, lib, myconfig, ... }: let
-  mypkgs = import ./packages pkgs;
-  desktops = {
-    Hyprland = "uwsm start $(which Hyprland)";
-  };
-in
-{
+{ inputs, config, pkgs, lib, myconfig, ... }: let
+  tpkgs = inputs.tipson-pkgs.packages.${pkgs.system};
+in {
   imports = with import ./modules; [
     terminal.fish
     terminal.television
@@ -81,7 +77,7 @@ in
         "$mod, F, exec, uwsm app -- kitty"
         "Control Alt, Delete, exec, uwsm stop --"
         "$mod, R, exec, uwsm app -- $(tofi-drun)"
-        "$mod, T, exec, ${mypkgs.tofi-nix-run}/bin/tofi-nix-run"
+        "$mod, T, exec, ${tpkgs.tofi-nix-run}/bin/tofi-nix-run"
         "$mod, C, killactive,"
         "$mod, left, movefocus, l"
         "$mod, right, movefocus, r"
@@ -95,7 +91,7 @@ in
         "$mod, Print, exec, hyprshot -m window --clipboard-only"
         "$mod, s, exec, uwsm app -- dolphin"
         "$mod, h, exec, uwsm app -T -- zenith"
-        "$mod, v, exec, bash -c \"wl-paste > $(${mypkgs.tofi-recursive-file}/bin/tofi-recursive-file --prompt-text='save clipboard to: ')\""
+        "$mod, v, exec, bash -c \"wl-paste > $(${tpkgs.tofi-recursive-file}/bin/tofi-recursive-file --prompt-text='save clipboard to: ')\""
       ] ++ (
         # workspaces
         # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
@@ -124,7 +120,11 @@ in
   };
 
 
-  programs.fish.loginShellInit = ''${mypkgs.user-desktop-select.override { inherit desktops; }}'';
+  programs.fish.loginShellInit = ''${tpkgs.user-desktop-select.override {
+    desktops = {
+      Hyprland = "uwsm start $(which Hyprland)";
+    };
+  }}'';
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
