@@ -84,12 +84,16 @@ in {
         "$mod, up, movefocus, u"
         "$mod, down, movefocus, d"
         "$mod, z, fullscreen,"
-        "$mod, a, splitratio, -0.1"
-        "$mod, d, splitratio, +0.1"
+        "$mod, q, splitratio, -0.1"
+        "$mod, e, splitratio, +0.1"
+        "$mod, w, swapwindow, u"
+        "$mod, s, swapwindow, d"
+        "$mod, a, swapwindow, l"
+        "$mod, d, swapwindow, r"
         "$mod, u, togglefloating,"
+        "$mod, p, pin,"
         ", Print, exec, hyprshot -m region --clipboard-only"
         "$mod, Print, exec, hyprshot -m window --clipboard-only"
-        "$mod, s, exec, uwsm app -- dolphin"
         "$mod, h, exec, uwsm app -T -- zenith"
         "$mod, v, exec, bash -c \"wl-paste > $(${tpkgs.tofi-recursive-file}/bin/tofi-recursive-file --prompt-text='save clipboard to: ')\""
       ] ++ (
@@ -112,6 +116,7 @@ in {
     extraConfig = ''
       input {
         kb_layout = si
+        follow_mouse = 2
       }
       dwindle {
         split_width_multiplier = 1.5
