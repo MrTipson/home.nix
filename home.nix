@@ -27,6 +27,11 @@ in {
     vscode
     waybar
   ]);
+  services.home-manager.autoExpire = {
+    enable = true;
+    frequency = "weekly";
+    store.cleanup = true;
+  };
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "tipson";
