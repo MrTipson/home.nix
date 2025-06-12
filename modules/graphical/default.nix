@@ -1,6 +1,7 @@
 {
   discord = import ./discord.nix;
   firefox = import ./firefox.nix;
+  gnome = import ./gnome.nix;
   hyprcursor = import ./hyprcursor.nix;
   hyprland = import ./hyprland.nix;
   hyprland-nvidia = import ./hyprland-nvidia.nix;
