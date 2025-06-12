@@ -1,6 +1,6 @@
 { pkgs, config, ... }:
 {
-  home.packages = [ pkgs.uwsm pkgs.xdg-desktop-portal-hyprland ];
+  home.packages = with pkgs; [ uwsm xdg-desktop-portal-hyprland ];
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.enable = false;

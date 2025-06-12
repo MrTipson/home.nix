@@ -1,4 +1,6 @@
-{ inputs, config, pkgs, lib, myconfig, ... }:
+{ inputs, config, pkgs, lib, myconfig, ... }: let
+  tpkgs = inputs.tipson-pkgs.packages.${pkgs.system};
+in
 {
   imports = with import ../modules; with graphical; [
     hyprcursor
