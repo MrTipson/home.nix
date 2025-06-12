@@ -6,8 +6,7 @@ in writeShellScript "user-desktop-select" ''
   ${lib.concatStringsSep "\n" entries}
 
   selected="$(${gum}/bin/gum choose ''${!desktops[@]})"
-  if [[ $selected == "nothing selected" ]]; then
-    echo "No desktop selected"
+  if [[ $selected == "" ]]; then
     exit
   fi
   ''${desktops[$selected]}

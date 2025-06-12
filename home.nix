@@ -68,6 +68,13 @@ in {
   programs.fish.loginShellInit = ''${tpkgs.user-specialisation-select}'';
   specialisation = import ./specializations;
 
+  home.activation."specialisationSetup" = ''
+    if [[ -e $newGenPath/specialisation ]]; then
+      test -h specialisation && unlink specialisation
+      ln -s $newGenPath/specialisation
+    fi
+  '';
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
   # This value determines the Home Manager release that your configuration is
