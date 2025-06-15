@@ -10,13 +10,19 @@
     gnome-bluetooth
     gnome-settings-daemon
     gsettings-desktop-schemas
-    adwaita-icon-theme
-    network-manager
+    gnome-online-accounts
     gnome-menus
     uwsm
     xdg-desktop-portal-gnome
     xdg-desktop-portal-gtk
   ];
+
+  gtk.iconTheme = {
+    name = "Adwaita";
+    package = pkgs.adwaita-icon-theme;
+  };
+
+  dbus.packages = with pkgs; [ gnome-online-accounts ];
 
   xdg.mime.enable = true;
 }

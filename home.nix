@@ -1,6 +1,4 @@
-{ inputs, config, pkgs, lib, myconfig, ... }: let
-  tpkgs = inputs.tipson-pkgs.packages.${pkgs.system};
-in {
+{ inputs, config, pkgs, lib, myconfig, ... }: {
   imports = with import ./modules; [
     terminal.fish
     terminal.television
@@ -65,7 +63,14 @@ in {
     '';
   };
 
-  programs.fish.loginShellInit = ''${tpkgs.user-specialisation-select}'';
+  programs.fish.loginShellInit = ''
+    set selected (${pkgs.gum}/bin/gum choose (ls ~/specialisation))
+
+    if test -n "$selected"
+      ~/specialisation/"$selected"/activate
+      source ~/session.start
+    end
+  '';
   specialisation = import ./specializations;
 
   home.activation."specialisationSetup" = ''

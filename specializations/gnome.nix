@@ -9,5 +9,5 @@
     nautilus
   ];
 
-  home.file."session.start".text = ''gnome-session --systemd-service & uwsm start gnome-shell'';
+  home.file."session.start".text = ''exec env XDG_SESSION_TYPE=wayland dbus-run-session -- gnome-session -l'';
 }
