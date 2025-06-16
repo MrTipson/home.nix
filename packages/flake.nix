@@ -1,6 +1,6 @@
 {
   description = "Homemade packages of tipson";
-  outputs = {nixpkgs, ...}@inputs:
+  outputs = {nixpkgs, ...}:
     let
       forAllSystems = with nixpkgs; (lib.genAttrs lib.systems.flakeExposed);
     in 

@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
-  systemd.user.services.polkit-soteria = { # nixpkgs/nixos/modules/security/soteria.nix
+  systemd.user.services.polkit-soteria = {
+    # nixpkgs/nixos/modules/security/soteria.nix
     Unit = {
       Description = "Soteria, Polkit authentication agent for any desktop environment";
       Wants = [ "graphical-session.target" ];

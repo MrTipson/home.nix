@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ config, ... }:
 {
   stylix.targets.waybar.enable = false;
   programs.waybar = {
@@ -6,9 +6,22 @@
     systemd.enable = true;
     settings.mainbar = {
       layer = "top";
-      modules-left = ["hyprland/workspaces" "tray"];
-      modules-center = ["hyprland/window"];
-      modules-right = ["temperature#nvme-1" "temperature#nvme-2" "cpu" "temperature#cpu" "memory" "wireplumber" "custom/notification" "clock" "custom/power"];
+      modules-left = [
+        "hyprland/workspaces"
+        "tray"
+      ];
+      modules-center = [ "hyprland/window" ];
+      modules-right = [
+        "temperature#nvme-1"
+        "temperature#nvme-2"
+        "cpu"
+        "temperature#cpu"
+        "memory"
+        "wireplumber"
+        "custom/notification"
+        "clock"
+        "custom/power"
+      ];
       tray = {
         spacing = 4;
       };
@@ -75,61 +88,65 @@
       };
     };
     # env GTK_DEBUG=interactive waybar -s waybar-style.css
-    style = with config.lib.stylix.colors.withHashtag; /*css*/ ''
-      @define-color base00 ${base00}; @define-color base01 ${base01}; @define-color base02 ${base02}; @define-color base03 ${base03};
-      @define-color base04 ${base04}; @define-color base05 ${base05}; @define-color base06 ${base06}; @define-color base07 ${base07};
-      @define-color base08 ${base08}; @define-color base09 ${base09}; @define-color base0A ${base0A}; @define-color base0B ${base0B};
-      @define-color base0C ${base0C}; @define-color base0D ${base0D}; @define-color base0E ${base0E}; @define-color base0F ${base0F};
-    ''
-    + (with config.stylix; /*css*/ ''
-      * {
-        font-family: "${fonts.sansSerif.name}";
-        font-size: ${builtins.toString fonts.sizes.desktop}pt;
-      }
+    style =
+      with config.lib.stylix.colors.withHashtag; # css
+      ''
+        @define-color base00 ${base00}; @define-color base01 ${base01}; @define-color base02 ${base02}; @define-color base03 ${base03};
+        @define-color base04 ${base04}; @define-color base05 ${base05}; @define-color base06 ${base06}; @define-color base07 ${base07};
+        @define-color base08 ${base08}; @define-color base09 ${base09}; @define-color base0A ${base0A}; @define-color base0B ${base0B};
+        @define-color base0C ${base0C}; @define-color base0D ${base0D}; @define-color base0E ${base0E}; @define-color base0F ${base0F};
+      ''
+      + (
+        with config.stylix; # css
+        ''
+          * {
+            font-family: "${fonts.sansSerif.name}";
+            font-size: ${builtins.toString fonts.sizes.desktop}pt;
+          }
 
-      window#waybar {
-        font-family: Source Code Pro;
-        background: alpha(@base00, ${builtins.toString opacity.desktop});
-        color: @base05;
-        font-size: small;
-      }
-      tooltip {
-        background: alpha(@base00, ${builtins.toString opacity.popups});
-        border-color: @base0D;
-      }
-      #cpu { color: @base08; margin-right: 0px; }
-      #temperature.cpu { color: @base08; margin-left: 0px; }
-      #memory { color: @base09; }
-      #wireplumber { color: @base0A; }
-      #custom-notification { color: @base0B; padding-right: 8px; }
-      #clock { color: @color0C; }
-      #custom-power { color: @base0D; padding-right: 8px; }
-      .modules-right .module {
-        padding: 1px 5px;
-        margin: 0px 5px;
-        border-top: 1px solid;
-      }
-      #workspaces button {
-        padding: 0 5px;
-        border-radius: 0px;
-        border: 0px;
-      }
-      #workspaces button.visible {
-        color: @base0D;
-        border-top: 1px solid;
-      }
-      #workspaces button:hover {
-        background: @base00;
-        transition: none;
-        text-shadow: none;
-        box-shadow: none;
-      }
-      #workspaces {
-        outline: none;
-      }
-      #tray {
-        margin-left: 8px;
-      }
-    '');
+          window#waybar {
+            font-family: Source Code Pro;
+            background: alpha(@base00, ${builtins.toString opacity.desktop});
+            color: @base05;
+            font-size: small;
+          }
+          tooltip {
+            background: alpha(@base00, ${builtins.toString opacity.popups});
+            border-color: @base0D;
+          }
+          #cpu { color: @base08; margin-right: 0px; }
+          #temperature.cpu { color: @base08; margin-left: 0px; }
+          #memory { color: @base09; }
+          #wireplumber { color: @base0A; }
+          #custom-notification { color: @base0B; padding-right: 8px; }
+          #clock { color: @color0C; }
+          #custom-power { color: @base0D; padding-right: 8px; }
+          .modules-right .module {
+            padding: 1px 5px;
+            margin: 0px 5px;
+            border-top: 1px solid;
+          }
+          #workspaces button {
+            padding: 0 5px;
+            border-radius: 0px;
+            border: 0px;
+          }
+          #workspaces button.visible {
+            color: @base0D;
+            border-top: 1px solid;
+          }
+          #workspaces button:hover {
+            background: @base00;
+            transition: none;
+            text-shadow: none;
+            box-shadow: none;
+          }
+          #workspaces {
+            outline: none;
+          }
+          #tray {
+            margin-left: 8px;
+          }
+        '');
   };
 }

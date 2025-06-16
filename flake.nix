@@ -33,27 +33,31 @@
     };
   };
 
-  outputs = {nixpkgs, home-manager, ...}@inputs:
+  outputs =
+    { nixpkgs, home-manager, ... }@inputs:
     let
-      mkHomeConfiguration = system: { myconfig, modules ? [] }: home-manager.lib.homeManagerConfiguration
+      mkHomeConfiguration =
+        system:
         {
+          myconfig,
+          modules ? [ ],
+        }:
+        home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.${system};
           extraSpecialArgs = { inherit inputs myconfig; };
           modules = [ ./home.nix ] ++ modules;
         };
-    in 
-      {
-        homeConfigurations = {
-          "tipson@masina" = mkHomeConfiguration "x86_64-linux"
-            {
-              myconfig.graphical = true;
-              modules = builtins.attrValues (import ./modules/hardware/masina);
-            };
-          "tipson@nospit" = mkHomeConfiguration "x86_64-linux"
-            {
-              myconfig.graphical = false;
-            };
+    in
+    {
+      homeConfigurations = {
+        "tipson@masina" = mkHomeConfiguration "x86_64-linux" {
+          myconfig.graphical = true;
+          modules = builtins.attrValues (import ./modules/hardware/masina);
         };
-        homeManagerModules = import ./modules;
+        "tipson@nospit" = mkHomeConfiguration "x86_64-linux" {
+          myconfig.graphical = false;
+        };
       };
+      homeManagerModules = import ./modules;
+    };
 }

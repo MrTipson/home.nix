@@ -1,6 +1,9 @@
 { pkgs, ... }:
 {
-  home.packages = [ pkgs.qpwgraph pkgs.pwvucontrol ];
+  home.packages = with pkgs; [
+    qpwgraph
+    pwvucontrol
+  ];
   programs.waybar.settings.mainbar = {
     wireplumber = {
       format = "   {volume}%";

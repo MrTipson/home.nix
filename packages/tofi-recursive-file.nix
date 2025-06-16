@@ -1,6 +1,14 @@
-{ writeShellApplication, tofi, fd }: writeShellApplication {
+{
+  writeShellApplication,
+  tofi,
+  fd,
+}:
+writeShellApplication {
   name = "tofi-recursive-file";
-  runtimeInputs = [ fd tofi ];
+  runtimeInputs = [
+    fd
+    tofi
+  ];
   text = ''
     # Starting directory
     DIR=$HOME
@@ -45,5 +53,5 @@
         exit
       fi
     done
-    '';
-}  
+  '';
+}

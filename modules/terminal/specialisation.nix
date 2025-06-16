@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   programs.fish.loginShellInit = ''
     set selected (${pkgs.gum}/bin/gum choose (ls ~/specialisation))
 

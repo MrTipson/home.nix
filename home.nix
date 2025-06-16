@@ -1,23 +1,34 @@
-{ inputs, config, pkgs, lib, myconfig, ... }: {
-  imports = with import ./modules; [
-    terminal.fish
-    terminal.specialisation
-    terminal.television
+{
+  pkgs,
+  lib,
+  myconfig,
+  ...
+}:
+{
+  imports =
+    with import ./modules;
+    [
+      terminal.fish
+      terminal.specialisation
+      terminal.television
 
-    ssh.github
-    ssh.minipc
-    ssh.rpi
-  ] ++ lib.optionals myconfig.graphical (with graphical; [
-    discord
-    firefox
-    mpv
-    obs-studio
-    pipewire
-    spotify
-    stylix-qt
-    stylix
-    vscode
-  ]);
+      ssh.github
+      ssh.minipc
+      ssh.rpi
+    ]
+    ++ lib.optionals myconfig.graphical (
+      with graphical;
+      [
+        discord
+        firefox
+        obs-studio
+        pipewire
+        spotify
+        stylix-qt
+        stylix
+        vscode
+      ]
+    );
   services.home-manager.autoExpire = {
     enable = true;
     frequency = "weekly";
@@ -31,16 +42,18 @@
   nixpkgs.config.allowUnfree = true;
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = with pkgs; [
-    nixd
-    nixfmt-rfc-style
-    zenith-nvidia # hardware monitor
-    tldr
-  ] ++ lib.optionals myconfig.graphical [
-    mangohud # hardware overlay
-    ffmpeg
-    xdg-utils
-  ];
+  home.packages =
+    with pkgs;
+    [
+      zenith-nvidia # hardware monitor
+      tldr
+    ]
+    ++ lib.optionals myconfig.graphical [
+      mangohud # hardware overlay
+      mpv
+      ffmpeg
+      xdg-utils
+    ];
 
   programs.direnv = {
     enable = true;

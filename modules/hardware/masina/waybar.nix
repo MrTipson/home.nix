@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 {
   programs.waybar.settings.mainbar = {
     "temperature#cpu".hwmon-path = "/sys/class/hwmon/hwmon2/temp1_input";

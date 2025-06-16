@@ -1,11 +1,16 @@
-{ writeShellApplication,
+{
+  writeShellApplication,
   tofi,
   jq,
   prompt ? "run nixpkgs package: ",
   cacheLocation ? "$XDG_CACHE_HOME/tofi-nix-run",
-}: writeShellApplication {
+}:
+writeShellApplication {
   name = "tofi-nix-run";
-  runtimeInputs = [ tofi jq ];
+  runtimeInputs = [
+    tofi
+    jq
+  ];
   text = ''
     hash=$(nix eval --expr "(builtins.getFlake flake:nixpkgs).narHash" --impure)
 
@@ -26,5 +31,5 @@
     # shellcheck disable=SC2206
     pkg=($pkg)
     uwsm app -- kitty --hold nix run nixpkgs#"''${pkg[0]}" -- "''${pkg[@]:1}"
-    '';
+  '';
 }

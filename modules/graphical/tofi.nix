@@ -1,6 +1,7 @@
 { pkgs, lib, ... }:
 
-let tofi-font-pkg = pkgs.nerd-fonts.fira-code;
+let
+  tofi-font-pkg = pkgs.nerd-fonts.fira-code;
   tofi-font = "${tofi-font-pkg}/share/fonts/truetype/NerdFonts/FiraCodeNerdFontMono-Retina.ttf";
 in
 {
@@ -19,7 +20,10 @@ in
       width = "100%";
     };
   };
-  home.packages = [ tofi-font-pkg pkgs.fd ];
+  home.packages = [
+    tofi-font-pkg
+    pkgs.fd
+  ];
   # Workaround for tofi sometimes not updating cache
-  home.activation.tofi = lib.hm.dag.entryAfter ["writeBoundary"] ''rm -f ~/.cache/tofi-drun'';
+  home.activation.tofi = lib.hm.dag.entryAfter [ "writeBoundary" ] ''rm -f ~/.cache/tofi-drun'';
 }
