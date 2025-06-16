@@ -1,6 +1,7 @@
 { inputs, config, pkgs, lib, myconfig, ... }: {
   imports = with import ./modules; [
     terminal.fish
+    terminal.specialisation
     terminal.television
 
     ssh.github
@@ -62,23 +63,6 @@
             - *mrtipson
     '';
   };
-
-  programs.fish.loginShellInit = ''
-    set selected (${pkgs.gum}/bin/gum choose (ls ~/specialisation))
-
-    if test -n "$selected"
-      ~/specialisation/"$selected"/activate
-      source ~/session.start
-    end
-  '';
-  specialisation = import ./specializations;
-
-  home.activation."specialisationSetup" = ''
-    if [[ -e $newGenPath/specialisation ]]; then
-      test -h specialisation && unlink specialisation
-      ln -s $newGenPath/specialisation
-    fi
-  '';
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
