@@ -22,6 +22,7 @@ in
     ];
 
   home.packages = with pkgs; [
+    uwsm
     wl-clipboard
     hyprshot # screenshot tool
     kdePackages.dolphin
