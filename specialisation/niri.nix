@@ -38,14 +38,14 @@ in
         Mod+Shift+Slash { show-hotkey-overlay; }
 
         // Suggested binds for running programs: terminal, app launcher, screen locker.
-        Mod+F hotkey-overlay-title="Open a Terminal" { spawn "kitty"; }
+        Mod+F hotkey-overlay-title="Open a Terminal" { spawn "bash" "-c" "uwsm app -T"; }
         Mod+R hotkey-overlay-title="Run an Application" { spawn "bash" "-c" "uwsm app -- $(tofi-drun)"; }
         Mod+V hotkey-overlay-title="Run an Application" { spawn "bash" "-c" "wl-paste > $(${tpkgs.tofi-recursive-file}/bin/tofi-recursive-file --prompt-text='save clipboard to: ')"; }
         Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 
         // You can also use a shell. Do this if you need pipes, multiple commands, etc.
         // Note: the entire command goes as a single argument in the end.
-        // Mod+T { spawn "bash" "-c" "notify-send hello && exec alacritty"; }
+        Mod+T { spawn "bash" "-c" "${tpkgs.tofi-nix-run}/bin/tofi-nix-run"; }
 
         // Open/close the Overview: a zoomed-out view of workspaces and windows.
         // You can also move the mouse into the top-left hot corner,
@@ -107,13 +107,11 @@ in
             in
             ''
               Mod+${toString ws} { focus-workspace ${toString ws}; }
-              Mod+Ctrl+${toString ws} { move-column-to-workspace ${toString ws}; }
+              Mod+Shift+${toString ws} { move-column-to-workspace ${toString ws}; }
+              Mod+Ctrl+${toString ws} { move-window-to-workspace ${toString ws}; }
             ''
           ) 9
         )}
-
-        // Alternatively, there are commands to move just a single window:
-        // Mod+Ctrl+1 { move-window-to-workspace 1; }
 
         Mod+Tab { focus-workspace-previous; }
 

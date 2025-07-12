@@ -8,6 +8,7 @@
   home.packages = with pkgs; [
     niri
     xwayland-satellite
+    xdg-desktop-portal-gtk
   ];
 
   xdg.configFile."niri/config.kdl".text = ''
