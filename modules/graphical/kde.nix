@@ -24,7 +24,7 @@
         qtstyleplugin-kvantum
         plasma-desktop
         plasma-workspace
-	kwindowsystem
+        kwindowsystem
       ]
       # yoinked from modules/services/desktop-managers/plasma6.nix
       ++ [
@@ -48,16 +48,16 @@
         kpackage # provides kpackagetool tool
         kservice # provides kbuildsycoca6 tool
         kunifiedpush # provides a background service and a KCM
-        kwallet # provides helper service
-        kwallet-pam # provides helper service
-        kwalletmanager # provides KCMs and stuff
+        #kwallet # provides helper service
+        #kwallet-pam # provides helper service
+        #kwalletmanager # provides KCMs and stuff
         plasma-activities # provides plasma-activities-cli tool
         solid # provides solid-hardware6 tool
         phonon-vlc # provides Phonon plugin
 
         # Core Plasma parts
         kwin
-	kwin-x11
+        kwin-x11
         kscreen
         libkscreen
         kscreenlocker
