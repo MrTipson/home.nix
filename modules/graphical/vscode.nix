@@ -4,6 +4,13 @@
     enable = true;
     package = pkgs.vscodium;
     profiles.default = {
+      keybindings = [
+        {
+          key = "alt+s";
+          command = "workbench.action.files.saveWithoutFormatting";
+          when = "textInputFocus";
+        }
+      ];
       extensions = with pkgs.vscode-extensions; [
         golang.go
         jnoortheen.nix-ide
@@ -24,6 +31,7 @@
         "files.associations" = {
           "*.css" = "tailwindcss";
         };
+        "editor.formatOnSave" = true;
       };
     };
   };
