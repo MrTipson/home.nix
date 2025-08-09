@@ -1,4 +1,5 @@
 {
+  cosmic = import ./cosmic.nix;
   discord = import ./discord.nix;
   firefox = import ./firefox.nix;
   gnome = import ./gnome.nix;
