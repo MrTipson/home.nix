@@ -4,4 +4,5 @@ builtins.mapAttrs (name: value: { configuration = value; }) {
   Gnome = import ./gnome.nix;
   KDE = import ./kde.nix;
   Niri = import ./niri.nix;
+  Xfce = import ./xfce.nix;
 }
