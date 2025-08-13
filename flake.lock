@@ -265,7 +265,8 @@
         "nixpkgs": "nixpkgs",
         "spicetify-nix": "spicetify-nix",
         "stylix": "stylix",
-        "tipson-pkgs": "tipson-pkgs"
+        "tipson-pkgs": "tipson-pkgs",
+        "win-tc": "win-tc"
       }
     },
     "spicetify-nix": {
@@ -464,6 +465,26 @@
         "type": "path"
       },
       "parent": []
+    },
+    "win-tc": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1754922687,
+        "narHash": "sha256-HBuPQ8q7MBhXDxjnB3WiwOTIOWb8vJCTqkoWL/Edd6M=",
+        "owner": "mrtipson",
+        "repo": "xfce-winxp-tc",
+        "rev": "753fa5b9e441442cf894ed56a7f3d6ebbf34cacd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mrtipson",
+        "repo": "xfce-winxp-tc",
+        "type": "github"
+      }
     }
   },
   "root": "root",

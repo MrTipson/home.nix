@@ -47,6 +47,7 @@
     [
       zenith-nvidia # hardware monitor
       tldr
+      nix-index
     ]
     ++ lib.optionals myconfig.graphical [
       mangohud # hardware overlay

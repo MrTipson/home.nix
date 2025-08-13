@@ -31,6 +31,11 @@
       url = "path:./packages";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    win-tc = {
+      url = "github:mrtipson/xfce-winxp-tc";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =

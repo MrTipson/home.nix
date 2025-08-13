@@ -19,5 +19,6 @@
   tofi = import ./tofi.nix;
   vscode = import ./vscode.nix;
   waybar = import ./waybar.nix;
+  win-xp = import ./win-xp.nix;
   xfce = import ./xfce.nix;
 }
