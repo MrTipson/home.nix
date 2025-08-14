@@ -15,7 +15,13 @@
     xfce.thunar-volman
   ];
 
-  stylix.enable = lib.mkForce false;
+  stylix = {
+    cursor = lib.mkForce null;
+    autoEnable = false;
+    targets = {
+      vscode.enable = true;
+    };
+  };
 
   home.file = {
     "x.conf".text = ''

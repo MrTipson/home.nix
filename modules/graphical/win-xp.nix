@@ -13,6 +13,7 @@ in
 
   home.pointerCursor = {
     enable = true;
+    x11.enable = true;
     name = "Windows XP Standard (with pointer shadows)";
     package = win-tc.cursors.with-shadow.standard;
   };
@@ -45,6 +46,7 @@ in
       "Net/EnableInputFeedbackSounds" = true;
       "Net/SoundThemeName" = "Windows XP Default";
       "Net/IconThemeName" = "luna";
+      "Net/ThemeName" = "Windows XP style (Blue)";
       "Xfce/SyncThemes" = true;
     };
   };
