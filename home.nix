@@ -26,6 +26,7 @@
         spotify
         stylix-qt
         stylix
+        vr
         vscode
       ]
     );

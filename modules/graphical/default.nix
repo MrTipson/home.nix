@@ -17,6 +17,7 @@
   stylix = import ./stylix.nix;
   swaync = import ./swaync.nix;
   tofi = import ./tofi.nix;
+  vr = import ./vr.nix;
   vscode = import ./vscode.nix;
   waybar = import ./waybar.nix;
   win-xp = import ./win-xp.nix;
