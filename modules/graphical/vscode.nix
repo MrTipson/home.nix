@@ -10,6 +10,15 @@
           command = "workbench.action.files.saveWithoutFormatting";
           when = "textInputFocus";
         }
+        {
+          key = "ctrl+t";
+          command = "workbench.action.terminal.focus";
+        }
+        {
+          key = "ctrl+t";
+          command = "workbench.action.focusActiveEditorGroup";
+          when = "terminalFocus";
+        }
       ];
       extensions = with pkgs.vscode-extensions; [
         golang.go
