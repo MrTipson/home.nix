@@ -33,7 +33,7 @@
     };
 
     win-tc = {
-      url = "github:mrtipson/xfce-winxp-tc";
+      url = "github:mrtipson/xfce-winxp-tc/cleanup";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
