@@ -46,9 +46,10 @@
         {
           myconfig,
           modules ? [ ],
+          overlays ? [ ],
         }:
         home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.${system};
+          pkgs = import nixpkgs { inherit system overlays; };
           extraSpecialArgs = { inherit inputs myconfig; };
           modules = [ ./home.nix ] ++ modules;
         };
@@ -63,6 +64,6 @@
           myconfig.graphical = false;
         };
       };
-      homeManagerModules = import ./modules;
+      homeModules = import ./modules;
     };
 }

@@ -7,7 +7,7 @@
 {
   qt = {
     enable = true;
-    platformTheme.name = lib.mkDefault "kde6";
+    platformTheme.name = lib.mkDefault "kde";
   };
 
   home.packages =
