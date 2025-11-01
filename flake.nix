@@ -32,6 +32,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    tipson-software = {
+      url = "github:mrtipson/software.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     win-tc = {
       url = "github:mrtipson/xfce-winxp-tc/cleanup";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -58,7 +63,7 @@
       homeConfigurations = {
         "tipson@masina" = mkHomeConfiguration "x86_64-linux" {
           myconfig.graphical = true;
-          modules = builtins.attrValues (import ./modules/hardware/masina);
+          modules = with import ./modules; ([ graphical.multiseat ] ++ (builtins.attrValues hardware.masina));
         };
         "tipson@nospit" = mkHomeConfiguration "x86_64-linux" {
           myconfig.graphical = false;

@@ -8,6 +8,7 @@
   hyprland = import ./hyprland.nix;
   kde = import ./kde.nix;
   kitty = import ./kitty.nix;
+  multiseat = import ./multiseat.nix;
   niri = import ./niri.nix;
   obs-studio = import ./obs-studio.nix;
   pipewire = import ./pipewire.nix;
