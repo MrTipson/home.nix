@@ -8,9 +8,13 @@
       layer = "top";
       modules-left = [
         "hyprland/workspaces"
+        "sway/workspaces"
         "tray"
       ];
-      modules-center = [ "hyprland/window" ];
+      modules-center = [
+        "hyprland/window"
+        "sway/window"
+      ];
       modules-right = [
         "temperature#nvme-1"
         "temperature#nvme-2"

@@ -15,6 +15,7 @@
   spotify = import ./spotify.nix;
   stylix-qt = import ./stylix-qt.nix;
   stylix = import ./stylix.nix;
+  sway = import ./sway.nix;
   swaync = import ./swaync.nix;
   tofi = import ./tofi.nix;
   vr = import ./vr.nix;
