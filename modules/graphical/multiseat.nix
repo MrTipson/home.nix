@@ -1,6 +1,6 @@
 { inputs, pkgs, ... }:
 let
-  inherit (inputs.tipson-software.packages.${pkgs.system})
+  inherit (inputs.multiseat-nix.packages.${pkgs.system})
     sway
     ;
 in

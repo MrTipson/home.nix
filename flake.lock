@@ -198,6 +198,26 @@
         "type": "github"
       }
     },
+    "multiseat-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1762088155,
+        "narHash": "sha256-L8tCG4EfbhY8szmA0zp68AFH50v9rnqyyh+PZkwQ22A=",
+        "owner": "mrtipson",
+        "repo": "multiseat-nix",
+        "rev": "5a057f0643bb21c0c4247e2c44ff91ba04c46dcb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mrtipson",
+        "repo": "multiseat-nix",
+        "type": "github"
+      }
+    },
     "nix-search-tv": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -262,12 +282,12 @@
       "inputs": {
         "firefox-addons": "firefox-addons",
         "home-manager": "home-manager",
+        "multiseat-nix": "multiseat-nix",
         "nix-search-tv": "nix-search-tv",
         "nixpkgs": "nixpkgs",
         "spicetify-nix": "spicetify-nix",
         "stylix": "stylix",
         "tipson-pkgs": "tipson-pkgs",
-        "tipson-software": "tipson-software",
         "win-tc": "win-tc"
       }
     },
@@ -467,26 +487,6 @@
         "type": "path"
       },
       "parent": []
-    },
-    "tipson-software": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1762020557,
-        "narHash": "sha256-r07mXc17xGbggOszNAVZtDGuevzVLecAk1r9kCoYQRg=",
-        "owner": "mrtipson",
-        "repo": "software.nix",
-        "rev": "c09c3801f3a6825f57f2604341c76c0b302727b4",
-        "type": "github"
-      },
-      "original": {
-        "owner": "mrtipson",
-        "repo": "software.nix",
-        "type": "github"
-      }
     },
     "win-tc": {
       "inputs": {
