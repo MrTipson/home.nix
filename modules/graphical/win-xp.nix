@@ -12,7 +12,7 @@
 
   win-tc = {
     enable = true;
-    package = inputs.win-tc.packages.${pkgs.system}.default;
+    package = inputs.win-tc.packages.${pkgs.stdenv.hostPlatform.system}.default;
   };
 
   home.packages =

@@ -63,8 +63,10 @@
   };
   programs.git = {
     enable = true;
-    userName = "MrTipson";
-    userEmail = "mr@tipson.xyz";
+    settings.user = {
+      name = "MrTipson";
+      email = "mr@tipson.xyz";
+    };
   };
 
   programs.ssh.enableDefaultConfig = false;

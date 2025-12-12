@@ -4,7 +4,7 @@
   ...
 }:
 let
-  tpkgs = inputs.tipson-pkgs.packages.${pkgs.system};
+  tpkgs = inputs.tipson-pkgs.packages.${pkgs.stdenv.hostPlatform.system};
 in
 {
   imports =

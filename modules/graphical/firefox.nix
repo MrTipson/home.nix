@@ -18,7 +18,7 @@
         "sidebar.verticalTabs" = true;
         "browser.urlbar.suggest.recentsearches" = false;
       };
-      extensions.packages = with inputs.firefox-addons.packages.${pkgs.system}; [
+      extensions.packages = with inputs.firefox-addons.packages.${pkgs.stdenv.hostPlatform.system}; [
         ublock-origin
         bitwarden
       ];
