@@ -48,7 +48,6 @@
     [
       zenith-nvidia # hardware monitor
       tldr
-      nix-index
     ]
     ++ lib.optionals myconfig.graphical [
       mangohud # hardware overlay
@@ -57,6 +56,10 @@
       xdg-utils
     ];
 
+  programs.nix-index = {
+    enable = true;
+    enableFishIntegration = true;
+  };
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
