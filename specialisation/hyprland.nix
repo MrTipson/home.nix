@@ -1,10 +1,9 @@
 {
-  inputs,
   pkgs,
   ...
 }:
 let
-  tpkgs = inputs.tipson-pkgs.packages.${pkgs.stdenv.hostPlatform.system};
+  inherit (import ../packages pkgs) tofi-nix-run tofi-recursive-file;
 in
 {
   imports =
@@ -36,7 +35,7 @@ in
         "$mod, F, exec, uwsm app -- kitty"
         "Control Alt, Delete, exec, uwsm stop --"
         "$mod, R, exec, uwsm app -- $(tofi-drun)"
-        "$mod, T, exec, ${tpkgs.tofi-nix-run}/bin/tofi-nix-run"
+        "$mod, T, exec, ${tofi-nix-run}/bin/tofi-nix-run"
         "$mod, C, killactive,"
         "$mod, left, movefocus, l"
         "$mod, right, movefocus, r"
@@ -54,7 +53,7 @@ in
         ", Print, exec, hyprshot -m region --clipboard-only"
         "$mod, Print, exec, hyprshot -m window --clipboard-only"
         "$mod, h, exec, uwsm app -T -- zenith"
-        "$mod, v, exec, bash -c \"wl-paste > $(${tpkgs.tofi-recursive-file}/bin/tofi-recursive-file --prompt-text='save clipboard to: ')\""
+        "$mod, v, exec, bash -c \"wl-paste > $(${tofi-recursive-file}/bin/tofi-recursive-file --prompt-text='save clipboard to: ')\""
       ]
       ++ (
         # workspaces

@@ -1,11 +1,10 @@
 {
-  inputs,
   pkgs,
   config,
   ...
 }:
 let
-  tpkgs = inputs.tipson-pkgs.packages.${pkgs.stdenv.hostPlatform.system};
+  inherit (import ../packages pkgs) tofi-nix-run tofi-recursive-file;
 in
 {
   imports =
@@ -21,7 +20,7 @@ in
       waybar
     ];
 
-  xdg.configFile."niri/config.kdl".text = ''
+  xdg.configFile."niri/config.kdl".text = with pkgs; ''
     // Example: block out two password managers from screen capture.
     // (This example rule is commented out with a "/-" in front.)
     /-window-rule {
@@ -33,19 +32,18 @@ in
         // Use this instead if you want them visible on third-party screenshot tools.
         // block-out-from "screencast"
     }
-
+    spawn-at-startup "${waybar}"
     binds {
         Mod+Shift+Slash { show-hotkey-overlay; }
 
         // Suggested binds for running programs: terminal, app launcher, screen locker.
-        Mod+F hotkey-overlay-title="Open a Terminal" { spawn "bash" "-c" "uwsm app -T"; }
-        Mod+R hotkey-overlay-title="Run an Application" { spawn "bash" "-c" "uwsm app -- $(tofi-drun)"; }
-        Mod+V hotkey-overlay-title="Run an Application" { spawn "bash" "-c" "wl-paste > $(${tpkgs.tofi-recursive-file}/bin/tofi-recursive-file --prompt-text='save clipboard to: ')"; }
-        Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
+        Mod+F hotkey-overlay-title="Open a Terminal" { spawn "${kitty}"; }
+        Mod+R hotkey-overlay-title="Run an Application" { spawn "${bash}" "-c" "$(${tofi}/bin/tofi-drun)"; }
+        Mod+V hotkey-overlay-title="Run an Application" { spawn "${bash}" "-c" "${wl-clipboard}/bin/wl-paste > $(${tofi-recursive-file}/bin/tofi-recursive-file --prompt-text='save clipboard to: ')"; }
 
         // You can also use a shell. Do this if you need pipes, multiple commands, etc.
         // Note: the entire command goes as a single argument in the end.
-        Mod+T { spawn "bash" "-c" "${tpkgs.tofi-nix-run}/bin/tofi-nix-run"; }
+        Mod+T { spawn "bash" "-c" "${tofi-nix-run}/bin/tofi-nix-run"; }
 
         // Open/close the Overview: a zoomed-out view of workspaces and windows.
         // You can also move the mouse into the top-left hot corner,
@@ -169,5 +167,5 @@ in
     uwsm
   ];
 
-  home.file."session.start".text = "uwsm start (which niri) -- --session";
+  home.file."session.start".text = "systemctl --user start niri.service";
 }

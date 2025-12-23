@@ -1,11 +1,10 @@
 {
-  inputs,
   pkgs,
   lib,
   ...
 }:
 let
-  tpkgs = inputs.tipson-pkgs.packages.${pkgs.stdenv.hostPlatform.system};
+  inherit (import ../packages pkgs) tofi-nix-run tofi-recursive-file;
 in
 {
   imports =
@@ -48,12 +47,12 @@ in
           "${modifier}+f" = "exec kitty";
           "${modifier}+c" = "kill";
           "${modifier}+r" = "exec $(tofi-drun)";
-          "${modifier}+t" = "exec ${tpkgs.tofi-nix-run}/bin/tofi-nix-run";
+          "${modifier}+t" = "exec ${tofi-nix-run}/bin/tofi-nix-run";
           "${modifier}+z" = "fullscreen toggle";
           "${modifier}+u" = "floating toggle";
           "${modifier}+h" = "exec kitty zenith";
           "${modifier}+v" =
-            "exec bash -c \"wl-paste > $(${tpkgs.tofi-recursive-file}/bin/tofi-recursive-file --prompt-text='save clipboard to: ')\"";
+            "exec bash -c \"wl-paste > $(${tofi-recursive-file}/bin/tofi-recursive-file --prompt-text='save clipboard to: ')\"";
         }
         // lib.mergeAttrsList (
           map mkMoveBinds [

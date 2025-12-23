@@ -1,4 +1,5 @@
 {
+  sources,
   pkgs,
   lib,
   myconfig,
@@ -10,7 +11,6 @@
     [
       terminal.fish
       terminal.specialisation
-      terminal.television
 
       ssh.github
       ssh.minipc

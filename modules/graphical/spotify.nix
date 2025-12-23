@@ -1,13 +1,16 @@
-{ inputs, pkgs, ... }:
+{
+  sources,
+  ...
+}:
 let
-  spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+  spicetify-nix = import sources.spicetify-nix { };
 in
 {
-  imports = [ inputs.spicetify-nix.homeManagerModules.spicetify ];
+  imports = [ spicetify-nix.homeManagerModules.spicetify ];
 
   programs.spicetify = {
     enable = true;
-    enabledExtensions = with spicePkgs.extensions; [
+    enabledExtensions = with spicetify-nix.packages.extensions; [
       adblock
       hidePodcasts
     ];

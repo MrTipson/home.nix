@@ -1,6 +1,9 @@
-{ inputs, pkgs, ... }:
+{
+  sources,
+  ...
+}:
 let
-  inherit (inputs.multiseat-nix.packages.${pkgs.system})
+  inherit ((import sources.multiseat-nix { overrides = sources; }).packages)
     sway
     ;
 in

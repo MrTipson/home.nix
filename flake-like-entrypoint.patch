@@ -1,0 +1,33 @@
+diff --git a/home-manager/home-manager.nix b/home-manager/home-manager.nix
+index 084fbd2f..e8aee8bd 100644
+--- a/home-manager/home-manager.nix
++++ b/home-manager/home-manager.nix
+@@ -4,22 +4,11 @@
+   confAttr ? null,
+   check ? true,
+ }:
+-
+ let
+-
+-  env = import ../modules {
+-    configuration =
+-      if confAttr == "" || confAttr == null then confPath else (import confPath).${confAttr};
+-    pkgs = pkgs;
+-    check = check;
+-  };
+-
++  inherit (pkgs) lib;
++  resolved = (conf: if builtins.isFunction conf then conf { } else conf) (import confPath);
+ in
+-{
+-  inherit (env)
+-    activationPackage
+-    config
+-    pkgs
+-    options
+-    ;
+-}
++if confAttr == "" || confAttr == null then
++  resolved
++else
++  lib.getAttrFromPath (lib.splitString "." confAttr) resolved

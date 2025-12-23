@@ -1,6 +1,6 @@
 {
+  sources,
   pkgs,
-  inputs,
   ...
 }:
 {
@@ -18,7 +18,7 @@
         "sidebar.verticalTabs" = true;
         "browser.urlbar.suggest.recentsearches" = false;
       };
-      extensions.packages = with inputs.firefox-addons.packages.${pkgs.stdenv.hostPlatform.system}; [
+      extensions.packages = with (import sources.firefox-addons { }).firefox-addons; [
         ublock-origin
         bitwarden
       ];

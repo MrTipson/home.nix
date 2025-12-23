@@ -1,18 +1,14 @@
 {
-  inputs,
-  config,
+  sources,
   pkgs,
-  lib,
   ...
 }:
 {
-  imports = [
-    inputs.win-tc.homeManagerModules.default
-  ];
+  imports = [ "${sources.win-tc}/packaging/nix/hm.nix" ];
 
   win-tc = {
     enable = true;
-    package = inputs.win-tc.packages.${pkgs.stdenv.hostPlatform.system}.default;
+    package = pkgs.callPackage "${sources.win-tc}/packaging/nix/package.nix" { };
   };
 
   home.packages =

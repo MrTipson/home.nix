@@ -1,0 +1,96 @@
+{
+  "pins": {
+    "firefox-addons": {
+      "type": "Git",
+      "repository": {
+        "type": "GitLab",
+        "repo_path": "rycee/nur-expressions",
+        "server": "https://gitlab.com/"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "6509da5789e9ee79a30983950b44a0f5ceaefb2a",
+      "url": "https://gitlab.com/api/v4/projects/rycee%2Fnur-expressions/repository/archive.tar.gz?sha=6509da5789e9ee79a30983950b44a0f5ceaefb2a",
+      "hash": "082rfs3q4jxsdzjn9mp8pvnv1d6yjlnx6y30b3g63vq119rsaqb3"
+    },
+    "home-manager": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "nix-community",
+        "repo": "home-manager"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "61fcc9de76b88e55578eb5d79fc80f2b236df707",
+      "url": "https://github.com/nix-community/home-manager/archive/61fcc9de76b88e55578eb5d79fc80f2b236df707.tar.gz",
+      "hash": "05i7rxv4pcdxynrzvhs9n2hpjzm32prhfjzfic3dcabp9wlyfpyi"
+    },
+    "multiseat-nix": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "mrtipson",
+        "repo": "multiseat-nix"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "0a1676a37f4b118ae9804a32c1df624de3413532",
+      "url": "https://github.com/mrtipson/multiseat-nix/archive/0a1676a37f4b118ae9804a32c1df624de3413532.tar.gz",
+      "hash": "1wvdc43m4bj7svvmr975gv14l2islmmhx7qbh0j82596pyky6jww"
+    },
+    "nix-search-tv": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "3timeslazy",
+        "repo": "nix-search-tv"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "c7919f34fde2e87de3fe70c74bf18c7e0091f19b",
+      "url": "https://github.com/3timeslazy/nix-search-tv/archive/c7919f34fde2e87de3fe70c74bf18c7e0091f19b.tar.gz",
+      "hash": "0yxsidl64xqgszhhxzgv7il6lrh5bs86m9mpq5gz7r84w2h8bwzp"
+    },
+    "spicetify-nix": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "Gerg-L",
+        "repo": "spicetify-nix"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "73031a3c9359c6c0ab82098793573d0c0951e372",
+      "url": "https://github.com/Gerg-L/spicetify-nix/archive/73031a3c9359c6c0ab82098793573d0c0951e372.tar.gz",
+      "hash": "16v8hf5l3sqy7i0yrnkqhrcm3mwj7ybrf2ykafbbyzapli5557vm"
+    },
+    "stylix": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "danth",
+        "repo": "stylix"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "e6829552d4bb659ebab00f08c61d8c62754763f3",
+      "url": "https://github.com/danth/stylix/archive/e6829552d4bb659ebab00f08c61d8c62754763f3.tar.gz",
+      "hash": "064v95jl9p6kvw5w6n259v795sb34wl0fpdqrrx2zrq2473d211n"
+    },
+    "win-tc": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "mrtipson",
+        "repo": "xfce-winxp-tc"
+      },
+      "branch": "cleanup",
+      "submodules": false,
+      "revision": "a9ff5a0ec6250fb6a3c22e0e4febcf05ec056277",
+      "url": "https://github.com/mrtipson/xfce-winxp-tc/archive/a9ff5a0ec6250fb6a3c22e0e4febcf05ec056277.tar.gz",
+      "hash": "1y2s1p0bqa9np9dn610bhjajnkniyfdf2kbihansz578m5hwhkhx"
+    }
+  },
+  "version": 5
+}

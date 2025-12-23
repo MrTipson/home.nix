@@ -14,6 +14,15 @@ Even if you don't care about this stuff, here are a couple of interesting things
     - quickly launching applications from nixpkgs ([tofi-nix-run.nix](https://github.com/MrTipson/home.nix/blob/master/packages/tofi-nix-run.nix))
     - recursively picking a file ([tofi-recursive-file.nix](https://github.com/MrTipson/home.nix/blob/master/packages/tofi-recursive-file.nix))
 
+## Npins
+I've recently switched from flakes to npins, but I wanted to keep the flake output structure. I don't know if there is a better way, but I ended up [patching](./flake-like-entrypoint.patch) home-manager to do what I want. Then all you need is to bootstrap so home-manager starts using the patched version: `home-manager switch -f ... -A ... -I home-manager=$(nix-instantiate --eval --raw -A patchedHM)`, and setup home manager so it manages itself:
+```nix
+programs.home-manager = {
+    enable = true;
+    path = lib.mkForce (import ./. { inherit sources; }).patchedHM;
+};
+```
+
 ---
 
 [^1] This doesn't mean that it doesn't affect you if you have only a single user. For me it helps with choosing the correct abstraction if I think about making it user agnostic.
