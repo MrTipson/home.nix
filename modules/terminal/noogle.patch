@@ -1,0 +1,302 @@
+diff --git a/src/app/f/[...path]/layout.tsx b/src/app/f/[...path]/layout.tsx
+index 1248a70..a588dbb 100644
+--- a/src/app/f/[...path]/layout.tsx
++++ b/src/app/f/[...path]/layout.tsx
+@@ -1,38 +1,10 @@
+-import { FilterProvider } from "@/components/layout/filterContext";
+-import { Header } from "@/components/layout/header";
+-import { Container } from "@mui/material";
+-import { ReactNode, Suspense } from "react";
+-import { SearchInput } from "@/components/searchInput";
++import { ReactNode } from "react";
+ 
+ export default function SearchLayout({
+   children,
+-  params,
+ }: {
+   children: ReactNode;
+   params: { path: string[] };
+ }) {
+-  return (
+-    <>
+-      <Suspense fallback="query">
+-        <FilterProvider>
+-          <Header search={<SearchInput placeholder="Search function" />} />
+-        </FilterProvider>
+-      </Suspense>
+-      <Container
+-        disableGutters
+-        maxWidth="lg"
+-        sx={{
+-          display: {
+-            xs: "block",
+-            md: "grid",
+-          },
+-          // display: "grid",
+-          gridTemplateColumns: "0.4fr 6fr 1fr",
+-          alignItems: "start",
+-        }}
+-      >
+-        {children}
+-      </Container>
+-    </>
+-  );
++  return children;
+ }
+diff --git a/src/app/f/[...path]/page.tsx b/src/app/f/[...path]/page.tsx
+index f2dad08..f04aa7f 100644
+--- a/src/app/f/[...path]/page.tsx
++++ b/src/app/f/[...path]/page.tsx
+@@ -1,20 +1,15 @@
+-import { HighlightBaseline } from "@/components/HighlightBaseline";
+-import { ShareButton } from "@/components/ShareButton";
+-import { BackButton } from "@/components/BackButton";
+-import { Doc, data, manualLinks, upstreamInfo, nixInfo } from "@/models/data";
++import { Doc, data, manualLinks } from "@/models/data";
+ import { getPrimopDescription } from "@/models/primop";
+-import { extractExcerpt, extractHeadings, parseMd } from "@/utils";
++import { extractExcerpt, parseMd } from "@/utils";
+ import { Box, Divider, Typography, Link, Chip } from "@mui/material";
+ import { findType, interpretType } from "@/models/nix";
+ import { FilterProvider } from "@/components/layout/filterContext";
+ import React, { Suspense } from "react";
+-import { PositionLink } from "@/components/PositionLink";
+ import { SearchNav } from "@/components/SearchNav";
+ 
+ import fs from "fs";
+ import path from "path";
+ import { Metadata, ResolvingMetadata } from "next";
+-import { LastUpdatedFromCommit } from "@/components/LastUpdatedFromCommit";
+ 
+ // Important the key ("path") in the returned dict MUST match the dynamic path segment ([...path])
+ export async function generateStaticParams(): Promise<{ path: string[] }[]> {
+@@ -26,69 +21,6 @@ export async function generateStaticParams(): Promise<{ path: string[] }[]> {
+   return paths;
+ }
+ 
+-interface TocProps {
+-  mdxSource: string;
+-  title?: string;
+-}
+-
+-const Toc = async (props: TocProps) => {
+-  const { mdxSource, title } = props;
+-  const headings = await extractHeadings(mdxSource);
+-
+-  return (
+-    <Box
+-      data-pagefind-ignore="all"
+-      sx={{
+-        display: {
+-          xs: "none",
+-          md: "block",
+-        },
+-        position: "sticky",
+-        top: "3.7rem",
+-        p: 2,
+-        order: 3,
+-        whiteSpace: "nowrap",
+-      }}
+-    >
+-      <Typography variant="subtitle1" component={"div"}>
+-        On this page
+-      </Typography>
+-      <Box sx={{ display: "flex", flexDirection: "column" }}>
+-        {title && (
+-          <Link rel="canonical" href={`#${title}`}>
+-            <Typography
+-              variant="body2"
+-              sx={{
+-                justifyContent: "start",
+-                textTransform: "none",
+-                color: "text.primary",
+-                py: 0.5,
+-              }}
+-            >
+-              {title}
+-            </Typography>
+-          </Link>
+-        )}
+-        {headings.map((h, idx) => (
+-          <Link rel="canonical" key={idx} href={`#${h.id}`}>
+-            <Typography
+-              variant="body2"
+-              sx={{
+-                justifyContent: "start",
+-                textTransform: "none",
+-                color: "text.primary",
+-                pl: h.level,
+-                py: 0.5,
+-              }}
+-            >
+-              <span dangerouslySetInnerHTML={{ __html: h.value }} />
+-            </Typography>
+-          </Link>
+-        ))}
+-      </Box>
+-    </Box>
+-  );
+-};
+ 
+ const MDX = async ({ source }: { source: string }) => {
+   const html = await parseMd(source);
+@@ -176,15 +108,14 @@ export default async function Page(props: { params: { path: string[] } }) {
+     return undefined;
+   }
+ 
+-  const {attr_position, lambda_position} = item?.meta || {};
++  const { attr_position, lambda_position } = item?.meta || {};
+   const contentPosition = item?.meta?.content_meta?.position;
+ 
+-  const isDeprecated = [ attr_position, contentPosition, lambda_position ].filter(Boolean).some(p => p?.file?.includes("deprecated") );
++  const isDeprecated = [attr_position, contentPosition, lambda_position].filter(Boolean).some(p => p?.file?.includes("deprecated"));
+ 
+   const expr_code = (meta?.lambda_expr || meta?.attr_expr) ?? null;
+   return (
+     <>
+-      <Toc mdxSource={source + externManualSrc} title={item?.meta.title} />
+       <Box
+         component="main"
+         data-pagefind-body
+@@ -197,24 +128,6 @@ export default async function Page(props: { params: { path: string[] } }) {
+           bgcolor: "background.paper",
+         }}
+       >
+-        <HighlightBaseline />
+-        {meta?.path &&
+-          meta.path.map((attr, idx, all) =>
+-            idx === all.length - 1 ? (
+-              <React.Fragment key={idx}>
+-                <meta data-pagefind-meta={`name:${attr}`} />
+-                <Box component="h2" sx={{ display: "none" }}>
+-                  {attr}
+-                </Box>
+-              </React.Fragment>
+-            ) : (
+-              <meta key={idx} data-pagefind-meta={`category:${attr}`} />
+-            )
+-          )}
+-        <meta
+-          data-pagefind-sort="weight[data-weight]"
+-          data-weight={meta?.path?.at(0) === "builtins" ? "10" : "1"}
+-        />
+         <Box>
+           <Box
+             sx={{
+@@ -224,11 +137,6 @@ export default async function Page(props: { params: { path: string[] } }) {
+               flexWrap: "wrap",
+             }}
+           >
+-            <Suspense fallback={""}>
+-              <FilterProvider>
+-                <BackButton />
+-              </FilterProvider>
+-            </Suspense>
+             <Typography
+               id={item?.meta.title}
+               variant="h2"
+@@ -270,25 +178,16 @@ export default async function Page(props: { params: { path: string[] } }) {
+                 sx={{ ml: "auto", maxWidth: "10rem" }}
+               />
+             )}
+-            <ShareButton />
+-          </Box>
+-          <Box sx={{ pl: 4, m: 1 }} data-pagefind-ignore="all">
+-            {meta?.is_primop &&
+-            meta.content_meta?.path?.includes("builtins") ? (
+-              <LastUpdatedFromCommit {...nixInfo} type="nix" />
+-            ) : (
+-              <LastUpdatedFromCommit {...upstreamInfo} type="nixpkgs" />
+-            )}
+           </Box>
+           {isDeprecated && (
+             <Box
+-              sx={{width: "100%", px: 4}}>
++              sx={{ width: "100%", px: 4 }}>
+               <Chip
+                 label="Deprecated"
+                 color="error"
+                 sx={{ width: "100%" }}
+               />
+-             </Box>
++            </Box>
+           )}
+           <Divider flexItem sx={{ mt: 2 }} />
+ 
+@@ -339,39 +238,7 @@ export default async function Page(props: { params: { path: string[] } }) {
+           )}
+           <Divider />
+           <MDX source={source} />
+-          {meta && <PositionLink meta={meta} content={item?.content} />}
+           <div data-pagefind-ignore="all">
+-            {(expr_code ||
+-              !!meta?.aliases?.length ||
+-              (!!signature && !meta?.signature) ||
+-              meta?.is_functor) && (
+-              <>
+-                <Divider flexItem />
+-                <Typography
+-                  variant="subtitle1"
+-                  component={"h4"}
+-                  sx={{
+-                    color: "text.secondary",
+-                    alignSelf: "center",
+-                    pb: 2,
+-                    textAlign: "center",
+-                  }}
+-                >
+-                  Noogle detected
+-                </Typography>
+-              </>
+-            )}
+-            {meta?.is_functor && (
+-              <>
+-                <Typography variant="h5" component={"div"}>
+-                  This is a Functor
+-                </Typography>
+-                <br />
+-                <Link rel="canonical" href="/md/tutorials/functors">
+-                  Learn about functors
+-                </Link>
+-              </>
+-            )}
+             {!!meta?.aliases?.length && (
+               <>
+                 <MDX source={`## Aliases`} />
+@@ -386,18 +253,7 @@ export default async function Page(props: { params: { path: string[] } }) {
+                 </ul>
+               </>
+             )}
+-            {!!signature && !meta?.signature && (
+-              <>
+-                <Typography
+-                  variant="h5"
+-                  component={"div"}
+-                  sx={{ color: "text.secondary" }}
+-                >
+-                  Detected Type
+-                </Typography>
+-                <MDX source={`\`\`\`haskell\n${signature.trim()}\n\`\`\`\n`} />
+-              </>
+-            )}
++            {!!signature && !meta?.signature && <MDX source={`## Detected Type \n\`\`\`haskell\n${signature.trim()}\n\`\`\`\n`} />}
+             {meta?.is_primop && (
+               <Box>
+                 <MDX
+diff --git a/src/app/layout.tsx b/src/app/layout.tsx
+index c1b3581..aa8e057 100644
+--- a/src/app/layout.tsx
++++ b/src/app/layout.tsx
+@@ -28,12 +28,6 @@ export default function RootLayout({
+     <html lang="en" className={inter.className} data-color-scheme="light">
+       <head>
+         {/* <link rel="icon" href="/favicon.png" /> */}
+-        <link
+-          rel="search"
+-          type="application/opensearchdescription+xml"
+-          title="Search nix function on noogle"
+-          href="/search.xml"
+-        ></link>
+       </head>
+       <body>
+         <AppRouterCacheProvider

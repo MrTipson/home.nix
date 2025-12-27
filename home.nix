@@ -11,6 +11,7 @@
     [
       terminal.fish
       terminal.specialisation
+      terminal.television
 
       ssh.github
       ssh.minipc
@@ -56,10 +57,7 @@
       xdg-utils
     ];
 
-  programs.nix-index = {
-    enable = true;
-    enableFishIntegration = true;
-  };
+  programs.nix-index.enable = true; # nix-locate
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
