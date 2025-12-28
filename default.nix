@@ -34,7 +34,7 @@ let
       modules = [ ./home.nix ] ++ modules;
     };
 in
-{
+rec {
   homeConfigurations = {
     "masina" = mkHomeConfiguration {
       overlays = with multiseat-nix.overlays; [
@@ -45,10 +45,10 @@ in
         graphical = true;
         multiseat = true;
       };
-      modules = with import ./modules; ([ graphical.multiseat ] ++ (builtins.attrValues hardware.masina));
+      modules = with homeModules; [ graphical.multiseat ] ++ (builtins.attrValues hardware.masina);
     };
     "nospit" = mkHomeConfiguration { };
   };
-  homeModules = import ./modules;
+  homeModules = import ./modules pkgs.lib;
   patchedHM = home-manager.path;
 }

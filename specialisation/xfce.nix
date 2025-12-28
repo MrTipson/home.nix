@@ -1,6 +1,6 @@
 { pkgs, lib, ... }:
 {
-  imports = with import ../modules; [
+  imports = with import ../modules lib; [
     graphical.xfce
   ];
 

@@ -2,7 +2,7 @@
 {
   #  stylix.targets.qt.enable = lib.mkForce false;
   #  stylix.targets.kde.enable = lib.mkForce false;
-  imports = with import ../modules; [
+  imports = with import ../modules lib; [
     graphical.kde
   ];
 

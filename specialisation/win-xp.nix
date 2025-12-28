@@ -4,7 +4,7 @@
   ...
 }:
 {
-  imports = with import ../modules; [ graphical.win-xp ];
+  imports = with import ../modules lib; [ graphical.win-xp ];
 
   home.packages = with pkgs; [
     xfce.xfce4-power-manager

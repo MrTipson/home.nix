@@ -1,6 +1,6 @@
 {
   pkgs,
-  config,
+  lib,
   ...
 }:
 let
@@ -8,7 +8,7 @@ let
 in
 {
   imports =
-    with import ../modules;
+    with import ../modules lib;
     with graphical;
     [
       hyprcursor

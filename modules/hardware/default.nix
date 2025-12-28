@@ -1,3 +1,0 @@
-{
-  masina = import ./masina;
-}

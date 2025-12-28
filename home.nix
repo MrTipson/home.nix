@@ -7,7 +7,7 @@
 }:
 {
   imports =
-    with import ./modules;
+    with import ./modules lib;
     [
       terminal.fish
       terminal.specialisation

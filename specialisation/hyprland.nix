@@ -1,13 +1,10 @@
-{
-  pkgs,
-  ...
-}:
+{ pkgs, lib, ... }:
 let
   inherit (import ../packages pkgs) tofi-nix-run tofi-recursive-file;
 in
 {
   imports =
-    with import ../modules;
+    with import ../modules lib;
     with graphical;
     [
       hyprcursor

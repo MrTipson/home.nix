@@ -8,7 +8,7 @@ let
 in
 {
   imports =
-    with import ../modules;
+    with import ../modules lib;
     with graphical;
     [
       sway
