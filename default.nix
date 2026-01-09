@@ -21,7 +21,7 @@ let
   };
   mkHomeConfiguration =
     {
-      myconfig,
+      myconfig ? { },
       modules ? [ ],
       overlays ? [ ],
     }:
@@ -48,6 +48,7 @@ rec {
       modules = with homeModules; [ graphical.multiseat ] ++ (builtins.attrValues hardware.masina);
     };
     "nospit" = mkHomeConfiguration { };
+    "kista" = mkHomeConfiguration { };
   };
   homeModules = import ./modules pkgs.lib;
   patchedHM = home-manager.path;
