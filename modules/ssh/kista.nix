@@ -3,9 +3,9 @@
   programs.ssh = {
     enable = true;
     matchBlocks = {
-      minipc = {
-        host = "minipc";
-        hostname = "nospit.local";
+      kista = {
+        host = "kista";
+        hostname = "kista.local";
       };
     };
   };
