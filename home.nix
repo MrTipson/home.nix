@@ -10,7 +10,6 @@
     with import ./modules lib;
     [
       terminal.fish
-      terminal.specialisation
       terminal.television
 
       ssh.github
@@ -20,6 +19,7 @@
     ++ lib.optionals myconfig.graphical (
       with graphical;
       [
+        specialisation
         discord
         firefox
         obs-studio
