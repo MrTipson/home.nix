@@ -18,6 +18,7 @@ let
   defaultConfig = {
     multiseat = false;
     graphical = false;
+    impermanence = false;
   };
   mkHomeConfiguration =
     {
@@ -48,7 +49,9 @@ rec {
       modules = with homeModules; [ graphical.multiseat ] ++ (builtins.attrValues hardware.masina);
     };
     "nospit" = mkHomeConfiguration { };
-    "kista" = mkHomeConfiguration { };
+    "kista" = mkHomeConfiguration {
+      myconfig.impermanence = true;
+    };
   };
   homeModules = import ./modules pkgs.lib;
   patchedHM = home-manager.path;

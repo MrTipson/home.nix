@@ -1,4 +1,4 @@
-{ ... }:
+{ myconfig, config, ... }:
 {
   programs.ssh = {
     enable = true;
@@ -10,5 +10,11 @@
         identityFile = "~/.ssh/github";
       };
     };
+  };
+
+  home.file."key-github" = {
+    enable = myconfig.impermanence;
+    source = "${config.home.homeDirectory}/Extra/github";
+    target = "${config.home.homeDirectory}/.ssh/github";
   };
 }
