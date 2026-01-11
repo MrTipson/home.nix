@@ -94,6 +94,7 @@
           - age:
             - *mrtipson
     '';
+    ".profile".text = ''exec ${lib.getExe pkgs.fish} -l'';
   };
 
   # Let Home Manager install and manage itself.
