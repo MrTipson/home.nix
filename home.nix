@@ -10,7 +10,7 @@
     with import ./modules lib;
     [
       terminal.fish
-      terminal.television
+      terminal.fzf
 
       ssh.github
       ssh.minipc
