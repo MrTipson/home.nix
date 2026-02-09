@@ -7,15 +7,15 @@
   imports = with import ../modules lib; [ graphical.win-xp ];
 
   home.packages = with pkgs; [
-    xfce.xfce4-power-manager
-    xfce.xfce4-terminal
-    xfce.xfce4-taskmanager
-    xfce.mousepad
-    xfce.ristretto
-    xfce.thunar
-    xfce.thunar-archive-plugin
-    xfce.thunar-media-tags-plugin
-    xfce.thunar-volman
+    xfce4-power-manager
+    xfce4-terminal
+    xfce4-taskmanager
+    mousepad
+    ristretto
+    thunar
+    thunar-archive-plugin
+    thunar-media-tags-plugin
+    thunar-volman
   ];
 
   win-tc = {
@@ -43,7 +43,7 @@
         Driver "libinput"
       EndSection
     '';
-    "session.start".text = ''startx -- -config x.conf vt$XDG_VTNR'';
+    "session.start".text = "startx -- -config x.conf vt$XDG_VTNR";
     ".xinitrc".text = ''
       export DESKTOP_SESSION="WINTC"
       export XDG_CURRENT_DESKTOP="WINTC"

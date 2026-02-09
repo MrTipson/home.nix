@@ -5,14 +5,14 @@
   ];
 
   home.packages = with pkgs; [
-    xfce.xfce4-terminal
-    xfce.xfce4-taskmanager
-    xfce.mousepad
-    xfce.ristretto
-    xfce.thunar
-    xfce.thunar-archive-plugin
-    xfce.thunar-media-tags-plugin
-    xfce.thunar-volman
+    xfce4-terminal
+    xfce4-taskmanager
+    mousepad
+    ristretto
+    thunar
+    thunar-archive-plugin
+    thunar-media-tags-plugin
+    thunar-volman
   ];
 
   home.file = {
@@ -28,7 +28,7 @@
         Driver "libinput"
       EndSection
     '';
-    "session.start".text = ''startx -- -config x.conf vt$XDG_VTNR'';
+    "session.start".text = "startx -- -config x.conf vt$XDG_VTNR";
     ".xinitrc".text = ''
       exec startxfce4
     '';
