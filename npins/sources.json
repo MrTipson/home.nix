@@ -9,9 +9,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "6509da5789e9ee79a30983950b44a0f5ceaefb2a",
-      "url": "https://gitlab.com/api/v4/projects/rycee%2Fnur-expressions/repository/archive.tar.gz?sha=6509da5789e9ee79a30983950b44a0f5ceaefb2a",
-      "hash": "082rfs3q4jxsdzjn9mp8pvnv1d6yjlnx6y30b3g63vq119rsaqb3"
+      "revision": "5b0fb7d54dea38c47e5c58058c166e790a0e0cf1",
+      "url": "https://gitlab.com/api/v4/projects/rycee%2Fnur-expressions/repository/archive.tar.gz?sha=5b0fb7d54dea38c47e5c58058c166e790a0e0cf1",
+      "hash": "sha256-C6OJuD3A4KDNz4QaYedkYtXzKHPecG5YYyMGLq7UwY8="
     },
     "home-manager": {
       "type": "Git",
@@ -22,9 +22,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "61fcc9de76b88e55578eb5d79fc80f2b236df707",
-      "url": "https://github.com/nix-community/home-manager/archive/61fcc9de76b88e55578eb5d79fc80f2b236df707.tar.gz",
-      "hash": "05i7rxv4pcdxynrzvhs9n2hpjzm32prhfjzfic3dcabp9wlyfpyi"
+      "revision": "5de7dbd151b0bd65d45785553d4a22d832733ffc",
+      "url": "https://github.com/nix-community/home-manager/archive/5de7dbd151b0bd65d45785553d4a22d832733ffc.tar.gz",
+      "hash": "sha256-ikws/ssAmG20AGrEwBuwspwPlkubJu34mB+Uz2fJBJs="
     },
     "multiseat-nix": {
       "type": "Git",
@@ -37,7 +37,7 @@
       "submodules": false,
       "revision": "0a1676a37f4b118ae9804a32c1df624de3413532",
       "url": "https://github.com/mrtipson/multiseat-nix/archive/0a1676a37f4b118ae9804a32c1df624de3413532.tar.gz",
-      "hash": "1wvdc43m4bj7svvmr975gv14l2islmmhx7qbh0j82596pyky6jww"
+      "hash": "sha256-nEvjp78mFYEkgAufDmulOgpKwn7lpFz31kcuUgdhbfM="
     },
     "spicetify-nix": {
       "type": "Git",
@@ -48,9 +48,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "73031a3c9359c6c0ab82098793573d0c0951e372",
-      "url": "https://github.com/Gerg-L/spicetify-nix/archive/73031a3c9359c6c0ab82098793573d0c0951e372.tar.gz",
-      "hash": "16v8hf5l3sqy7i0yrnkqhrcm3mwj7ybrf2ykafbbyzapli5557vm"
+      "revision": "ec8d73085fdf807d55765335dc8126e14e7b2096",
+      "url": "https://github.com/Gerg-L/spicetify-nix/archive/ec8d73085fdf807d55765335dc8126e14e7b2096.tar.gz",
+      "hash": "sha256-JkEbzFDFTsUlVtHEzA8Y4r3O9LInhb96eOCbtGjGnbM="
     },
     "stylix": {
       "type": "Git",
@@ -61,9 +61,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "e6829552d4bb659ebab00f08c61d8c62754763f3",
-      "url": "https://github.com/danth/stylix/archive/e6829552d4bb659ebab00f08c61d8c62754763f3.tar.gz",
-      "hash": "064v95jl9p6kvw5w6n259v795sb34wl0fpdqrrx2zrq2473d211n"
+      "revision": "d27951a6539951d87f75cf0a7cda8a3a24016019",
+      "url": "https://github.com/danth/stylix/archive/d27951a6539951d87f75cf0a7cda8a3a24016019.tar.gz",
+      "hash": "sha256-wbFF5cRxQOCzL/wHOKYm21t5AHPH2Lfp0mVPCOAvEoc="
     },
     "win-tc": {
       "type": "Git",
@@ -76,8 +76,8 @@
       "submodules": false,
       "revision": "a9ff5a0ec6250fb6a3c22e0e4febcf05ec056277",
       "url": "https://github.com/mrtipson/xfce-winxp-tc/archive/a9ff5a0ec6250fb6a3c22e0e4febcf05ec056277.tar.gz",
-      "hash": "1y2s1p0bqa9np9dn610bhjajnkniyfdf2kbihansz578m5hwhkhx"
+      "hash": "sha256-HU7IYanolK+tgnFN4Zrz0U4rlYQLBGNbujYpvMANWvg="
     }
   },
-  "version": 5
+  "version": 7
 }

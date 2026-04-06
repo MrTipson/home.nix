@@ -1,10 +1,11 @@
-builtins.mapAttrs (name: value: { configuration = value; }) {
-  Cosmic = import ./cosmic.nix;
-  Hyprland = import ./hyprland.nix;
-  Gnome = import ./gnome.nix;
-  KDE = import ./kde.nix;
-  Niri = import ./niri.nix;
-  Sway = import ./sway.nix;
-  "Windows XP" = import ./win-xp.nix;
-  Xfce = import ./xfce.nix;
+builtins.mapAttrs (name: value: { configuration = import value; }) {
+  Cosmic = ./cosmic.nix;
+  Hyprland = ./hyprland.nix;
+  Gnome = ./gnome.nix;
+  KDE = ./kde.nix;
+  "KDE [W]" = ./kde_wl.nix;
+  Niri = ./niri.nix;
+  Sway = ./sway.nix;
+  "Windows XP" = ./win-xp.nix;
+  Xfce = ./xfce.nix;
 }

@@ -26,7 +26,7 @@
         "global, 1, 3, default"
       ];
       windowrule = [
-        "decorate, 0, title:(.*)"
+        "decorate off, match:title .*"
       ];
     };
     extraConfig = ''

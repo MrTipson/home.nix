@@ -7,7 +7,6 @@
 {
   home.packages =
     with pkgs;
-    with xfce;
     [
       xorg.xinit
       xorg.xauth
