@@ -9,9 +9,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "5b0fb7d54dea38c47e5c58058c166e790a0e0cf1",
-      "url": "https://gitlab.com/api/v4/projects/rycee%2Fnur-expressions/repository/archive.tar.gz?sha=5b0fb7d54dea38c47e5c58058c166e790a0e0cf1",
-      "hash": "sha256-C6OJuD3A4KDNz4QaYedkYtXzKHPecG5YYyMGLq7UwY8="
+      "revision": "f15cdd20d0845728919ad067ff43bdd334b4b344",
+      "url": "https://gitlab.com/api/v4/projects/rycee%2Fnur-expressions/repository/archive.tar.gz?sha=f15cdd20d0845728919ad067ff43bdd334b4b344",
+      "hash": "sha256-Z2nOP600ATQLLHHemhHtYDjWyAqgLrVsozznIkvnkYY="
     },
     "home-manager": {
       "type": "Git",
@@ -22,9 +22,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "5de7dbd151b0bd65d45785553d4a22d832733ffc",
-      "url": "https://github.com/nix-community/home-manager/archive/5de7dbd151b0bd65d45785553d4a22d832733ffc.tar.gz",
-      "hash": "sha256-ikws/ssAmG20AGrEwBuwspwPlkubJu34mB+Uz2fJBJs="
+      "revision": "b2b7db486e06e098711dc291bb25db82850e1d16",
+      "url": "https://github.com/nix-community/home-manager/archive/b2b7db486e06e098711dc291bb25db82850e1d16.tar.gz",
+      "hash": "sha256-KmRNvpNOb7QEORa06bVgjW9kITcx0VhsI7w0vhmZyD8="
     },
     "multiseat-nix": {
       "type": "Git",
@@ -48,9 +48,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "ec8d73085fdf807d55765335dc8126e14e7b2096",
-      "url": "https://github.com/Gerg-L/spicetify-nix/archive/ec8d73085fdf807d55765335dc8126e14e7b2096.tar.gz",
-      "hash": "sha256-JkEbzFDFTsUlVtHEzA8Y4r3O9LInhb96eOCbtGjGnbM="
+      "revision": "8414bbf2fcc7bc0a22c675e498e3c7365c1aec0a",
+      "url": "https://github.com/Gerg-L/spicetify-nix/archive/8414bbf2fcc7bc0a22c675e498e3c7365c1aec0a.tar.gz",
+      "hash": "sha256-dWGk4SEdI189kQW5cE4Uo1Mc+P+kQEdgMcyMgTtmQOA="
     },
     "stylix": {
       "type": "Git",
@@ -61,9 +61,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "d27951a6539951d87f75cf0a7cda8a3a24016019",
-      "url": "https://github.com/danth/stylix/archive/d27951a6539951d87f75cf0a7cda8a3a24016019.tar.gz",
-      "hash": "sha256-wbFF5cRxQOCzL/wHOKYm21t5AHPH2Lfp0mVPCOAvEoc="
+      "revision": "3a02d9f73608641b28e08b26acb0b0b47c05f14b",
+      "url": "https://github.com/danth/stylix/archive/3a02d9f73608641b28e08b26acb0b0b47c05f14b.tar.gz",
+      "hash": "sha256-u7AUNs6U6eD1os4+ghbr1gH4QjPWzOdKvpeM+E+XRKM="
     },
     "win-tc": {
       "type": "Git",
@@ -79,5 +79,5 @@
       "hash": "sha256-HU7IYanolK+tgnFN4Zrz0U4rlYQLBGNbujYpvMANWvg="
     }
   },
-  "version": 7
+  "version": 8
 }

@@ -2,7 +2,7 @@
 {
   programs.ssh = {
     enable = true;
-    matchBlocks = {
+    settings = {
       github = {
         host = "github.com";
         hostname = "github.com";

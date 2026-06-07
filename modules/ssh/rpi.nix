@@ -2,7 +2,7 @@
 {
   programs.ssh = {
     enable = true;
-    matchBlocks = {
+    settings = {
       rpi = {
         host = "rpi";
         hostname = "192.168.64.229";

@@ -2,7 +2,7 @@
 {
   programs.ssh = {
     enable = true;
-    matchBlocks = {
+    settings = {
       minipc = {
         host = "minipc";
         hostname = "nospit.local";

@@ -2,7 +2,7 @@
 {
   programs.ssh = {
     enable = true;
-    matchBlocks = {
+    settings = {
       kista = {
         host = "kista";
         hostname = "kista.local";
