@@ -12,7 +12,6 @@
     gsettings-desktop-schemas
     gnome-online-accounts
     gnome-menus
-    uwsm
     xdg-desktop-portal-gnome
     xdg-desktop-portal-gtk
   ];
