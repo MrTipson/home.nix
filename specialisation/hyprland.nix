@@ -9,7 +9,6 @@ in
     [
       hyprcursor
       hyprland
-      hyprland-nvidia
       kitty
       soteria
       swaync
@@ -24,65 +23,53 @@ in
     kdePackages.dolphin
   ];
 
+  # view events: , wev
   wayland.windowManager.hyprland = {
-    settings = {
-      "$mod" = "SUPER";
-      bind = [
-        # nix-shell -p wev --run "wev"
-        "$mod, F, exec, uwsm app -- kitty"
-        "Control Alt, Delete, exec, uwsm stop --"
-        "$mod, R, exec, uwsm app -- $(tofi-drun)"
-        "$mod, T, exec, ${tofi-nix-run}/bin/tofi-nix-run"
-        "$mod, C, killactive,"
-        "$mod, left, movefocus, l"
-        "$mod, right, movefocus, r"
-        "$mod, up, movefocus, u"
-        "$mod, down, movefocus, d"
-        "$mod, z, fullscreen,"
-        "$mod, q, splitratio, -0.1"
-        "$mod, e, splitratio, +0.1"
-        "$mod, w, swapwindow, u"
-        "$mod, s, swapwindow, d"
-        "$mod, a, swapwindow, l"
-        "$mod, d, swapwindow, r"
-        "$mod, u, togglefloating,"
-        "$mod, p, pin,"
-        ", Print, exec, hyprshot -m region --clipboard-only"
-        "$mod, Print, exec, hyprshot -m window --clipboard-only"
-        "$mod, h, exec, uwsm app -T -- zenith"
-        "$mod, v, exec, bash -c \"wl-paste > $(${tofi-recursive-file}/bin/tofi-recursive-file --prompt-text='save clipboard to: ')\""
-      ]
-      ++ (
-        # workspaces
-        # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
-        builtins.concatLists (
-          builtins.genList (
-            i:
-            let
-              ws = i + 1;
-            in
-            [
-              "$mod, code:1${toString i}, workspace, ${toString ws}"
-              "$mod Shift, code:1${toString i}, movetoworkspacesilent, ${toString ws}"
-            ]
-          ) 9
-        )
-      );
-      bindm = [
-        "$mod, mouse:272, movewindow"
-        "$mod, mouse:273, resizewindow"
-      ];
+    settings.config.input = {
+      kb_layout = "si";
+      follow_mouse = 2;
     };
     extraConfig = ''
-      input {
-        kb_layout = si
-        follow_mouse = 2
-      }
-      dwindle {
-        split_width_multiplier = 1.5
-      }
+      local mainMod = "SUPER"
+
+      hl.bind(mainMod .. " + F", hl.dsp.exec_cmd("kitty"))
+      hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("$(tofi-drun)"))
+      hl.bind(mainMod .. " + T", hl.dsp.exec_cmd("${tofi-nix-run}/bin/tofi-nix-run"))
+      hl.bind(mainMod .. " + C", hl.dsp.window.close())
+
+      hl.bind(mainMod .. " + Z", hl.dsp.window.fullscreen({ action = "toggle" }))
+      hl.bind(mainMod .. " + U", hl.dsp.window.float({ action = "toggle" }))
+      hl.bind(mainMod .. " + P", hl.dsp.window.pin({ action = "toggle" }))
+
+      hl.bind("Print", hl.dsp.exec_cmd("hyprshot -m region --clipboard-only"))
+      hl.bind(mainMod .. " + Print", hl.dsp.exec_cmd("hyprshot -m window --clipboard-only"))
+      hl.bind(mainMod .. " + V", hl.dsp.exec_cmd("bash -c \"wl-paste > $(${tofi-recursive-file}/bin/tofi-recursive-file --prompt-text='save clipboard to: ')\""))
+
+      -- Move focus with mainMod + arrow keys
+      hl.bind(mainMod .. " + left",  hl.dsp.focus({ direction = "left" }))
+      hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "right" }))
+      hl.bind(mainMod .. " + up",    hl.dsp.focus({ direction = "up" }))
+      hl.bind(mainMod .. " + down",  hl.dsp.focus({ direction = "down" }))
+
+      -- Swap windows
+      hl.bind(mainMod .. " + A",  hl.dsp.window.swap({ direction = "left" }))
+      hl.bind(mainMod .. " + D", hl.dsp.window.swap({ direction = "right" }))
+      hl.bind(mainMod .. " + W",    hl.dsp.window.swap({ direction = "up" }))
+      hl.bind(mainMod .. " + S",  hl.dsp.window.swap({ direction = "down" }))
+
+      -- Switch workspaces with mainMod + [0-9]
+      -- Move active window to a workspace with mainMod + SHIFT + [0-9]
+      for i = 1, 10 do
+          local key = i % 10 -- 10 maps to key 0
+          hl.bind(mainMod .. " + " .. key,             hl.dsp.focus({ workspace = i}))
+          hl.bind(mainMod .. " + SHIFT + " .. key,     hl.dsp.window.move({ workspace = i }))
+      end
+
+      -- Move/resize windows with mainMod + LMB/RMB and dragging
+      hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(),   { mouse = true })
+      hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
     '';
   };
 
-  home.file."session.start".text = "uwsm start $(which Hyprland)";
+  home.file."session.start".text = "start-hyprland";
 }
