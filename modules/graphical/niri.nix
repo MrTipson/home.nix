@@ -8,8 +8,12 @@
   home.packages = with pkgs; [
     niri
     xwayland-satellite
-    xdg-desktop-portal-gtk
   ];
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-gnome ];
+  };
 
   xdg.configFile."niri/config.kdl".text = ''
     spawn-at-startup "xwayland-satellite"

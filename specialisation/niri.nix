@@ -32,18 +32,17 @@ in
         // Use this instead if you want them visible on third-party screenshot tools.
         // block-out-from "screencast"
     }
-    spawn-at-startup "${waybar}"
     binds {
         Mod+Shift+Slash { show-hotkey-overlay; }
 
         // Suggested binds for running programs: terminal, app launcher, screen locker.
-        Mod+F hotkey-overlay-title="Open a Terminal" { spawn "${kitty}"; }
-        Mod+R hotkey-overlay-title="Run an Application" { spawn "${bash}" "-c" "$(${tofi}/bin/tofi-drun)"; }
-        Mod+V hotkey-overlay-title="Run an Application" { spawn "${bash}" "-c" "${wl-clipboard}/bin/wl-paste > $(${tofi-recursive-file}/bin/tofi-recursive-file --prompt-text='save clipboard to: ')"; }
+        Mod+F hotkey-overlay-title="Open a Terminal" { spawn "${lib.getExe kitty}"; }
+        Mod+R hotkey-overlay-title="Run an Application" { spawn "${lib.getExe bash}" "-c" "$(${tofi}/bin/tofi-drun)"; }
+        Mod+V hotkey-overlay-title="Run an Application" { spawn "${lib.getExe bash}" "-c" "${wl-clipboard}/bin/wl-paste > $(${lib.getExe tofi-recursive-file} --prompt-text='save clipboard to: ')"; }
 
         // You can also use a shell. Do this if you need pipes, multiple commands, etc.
         // Note: the entire command goes as a single argument in the end.
-        Mod+T { spawn "bash" "-c" "${tofi-nix-run}/bin/tofi-nix-run"; }
+        Mod+T { spawn "bash" "-c" "${lib.getExe tofi-nix-run}"; }
 
         // Open/close the Overview: a zoomed-out view of workspaces and windows.
         // You can also move the mouse into the top-left hot corner,
