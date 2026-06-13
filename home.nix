@@ -48,8 +48,9 @@
   home.packages =
     with pkgs;
     [
-      zenith-nvidia # hardware monitor
+      comma
       tldr
+      zenith-nvidia # hardware monitor
     ]
     ++ lib.optionals myconfig.graphical [
       mangohud # hardware overlay
@@ -96,7 +97,7 @@
           - age:
             - *mrtipson
     '';
-    ".profile".text = ''exec ${lib.getExe pkgs.fish} -l'';
+    ".profile".text = "exec ${lib.getExe pkgs.fish} -l";
   };
 
   # Let Home Manager install and manage itself.
